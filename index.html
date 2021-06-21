@@ -39,7 +39,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <table class="table">
+      <table id="userstable" class="table">
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -50,7 +50,7 @@
           <th scope="col">Address</th>
         </tr>
         </thead>
-        <tbody id="userstable">
+        <tbody id="userstable1">
         </tbody>
       </table>
     </div>
@@ -131,6 +131,35 @@
   <h2 class="w3-wide">UNIVERSITY SYSTEM</h2>
   <p class="w3-opacity"><i>Merjem Kapo & Ilma Cengic</i></p>
 </section>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact form JavaScript -->
+<script src="js/jqBootstrapValidation.js"></script>
+<script src="js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="js/agency.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="assets/js/jquery.spapp.js"></script>
+<script src="assets/js/custom.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/1.3.1/js/toastr.js"></script>
 </body>
 </html>
 
@@ -148,7 +177,7 @@
         html += '<td>' + data[i].phone_number + '</td>';
         html += '<td>' + data[i].address + '</td></tr>';
       }
-      $(this.userstable).html(html);
+      $("#userstable").html(html);
     });
   }
 
@@ -164,7 +193,7 @@
         html += '<td>' + data[i].phone_number + '</td>';
         html += '<td>' + data[i].address + '</td></tr>';
       }
-      $(this.studentstable).html(html);
+      $("#studentstable").html(html);
     });
   }
 
@@ -180,7 +209,7 @@
         html += '<td>' + data[i].phone_number + '</td>';
         html += '<td>' + data[i].address + '</td></tr>';
       }
-      $(this.profesorsstable).html(html);
+      $("#profesorsstable").html(html);
     });
   }
 
@@ -194,7 +223,7 @@
         html += '<td>' + data[i].professor_id + '</td>';
         html += '<td>' + data[i].assistant_id + '</td>';
       }
-      $(this.coursestable).html(html);
+      $("#coursestable").html(html);
     });
   }
 
