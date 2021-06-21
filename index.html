@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+
+<head>
+  <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+  <script src="//stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+  <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="//code.highcharts.com/highcharts.js"></script>
+
+</head>
+
+<body>
+
+<!-- Content will go here -->
+
+<!-- Navigation -->
+<nav class="w3-bar w3-black">
+  <a href="#users" class="w3-button w3-bar-item">Users<li onclick="scrollto('users');"></li></a>
+  <a href="#students" class="w3-button w3-bar-item">Students<li onclick="scrollto('students');"></li></a>
+  <a href="#professors" class="w3-button w3-bar-item">Professors<li onclick="scrollto('professors');"></li></a>
+  <a href="#courses" class="w3-button w3-bar-item">Courses<li onclick="scrollto('courses');"></li></a>
+</nav>
+
+<!-- Slide Show -->
+<section>
+  <img class="mySlides" src="src\burch.jpg" style="width:100%">
+</section>
+
+<div id="users">
+  <div class="page-header">
+    <h1>users</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Address</th>
+        </tr>
+        </thead>
+        <tbody id="userstable">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="students">
+  <div class="page-header">
+    <h1>students</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Address</th>
+        </tr>
+        </thead>
+        <tbody id="studentstable">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div id="professors">
+  <div class="page-header">
+    <h1>professors</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Address</th>
+        </tr>
+        </thead>
+        <tbody id="profesorsstable">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="courses">
+  <div class="page-header">
+    <h1>courses</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Course Name</th>
+          <th scope="col">Professor ID</th>
+          <th scope="col">Assistant ID</th>
+        </tr>
+        </thead>
+        <tbody id="coursestable">
+        </tbody>
+      </table>
+    </div>
+  </div></div>
+
+<section class="w3-container w3-center" style="max-width:1500px">
+  <h2 class="w3-wide">UNIVERSITY SYSTEM</h2>
+  <p class="w3-opacity"><i>Merjem Kapo & Ilma Cengic</i></p>
+</section>
+</body>
+</html>
+
+<script type="text/javascript">
+
+  get_users();
+  function get_users() {
+    $.get("rest/users", function(data) {
+      var html = '';
+      for(var i = 0; i < data.length; i++) {
+        html += '<tr><td>' + data[i].id + '</td>';
+        html += '<td>' + data[i].first_name + '</td>';
+        html += '<td>' + data[i].last_name + '</td>';
+        html += '<td>' + data[i].email + '</td>';
+        html += '<td>' + data[i].phone_number + '</td>';
+        html += '<td>' + data[i].address + '</td></tr>';
+      }
+      $(this.userstable).html(html);
+    });
+  }
+
+  get_students();
+  function get_students() {
+    $.get("rest/students", function(data) {
+      var html = '';
+      for(var i = 0; i < data.length; i++) {
+        html += '<tr><td>' + data[i].id + '</td>';
+        html += '<td>' + data[i].first_name + '</td>';
+        html += '<td>' + data[i].last_name + '</td>';
+        html += '<td>' + data[i].email + '</td>';
+        html += '<td>' + data[i].phone_number + '</td>';
+        html += '<td>' + data[i].address + '</td></tr>';
+      }
+      $(this.studentstable).html(html);
+    });
+  }
+
+  get_professors();
+  function get_professors() {
+    $.get("rest/professors", function(data) {
+      var html = '';
+      for(var i = 0; i < data.length; i++) {
+        html += '<tr><td>' + data[i].id + '</td>';
+        html += '<td>' + data[i].first_name + '</td>';
+        html += '<td>' + data[i].last_name + '</td>';
+        html += '<td>' + data[i].email + '</td>';
+        html += '<td>' + data[i].phone_number + '</td>';
+        html += '<td>' + data[i].address + '</td></tr>';
+      }
+      $(this.profesorsstable).html(html);
+    });
+  }
+
+  get_courses();
+  function get_courses() {
+    $.get("rest/courses", function(data) {
+      var html = '';
+      for(var i = 0; i < data.length; i++) {
+        html += '<tr><td>' + data[i].id + '</td>';
+        html += '<td>' + data[i].course_name + '</td>';
+        html += '<td>' + data[i].professor_id + '</td>';
+        html += '<td>' + data[i].assistant_id + '</td>';
+      }
+      $(this.coursestable).html(html);
+    });
+  }
+
+</script>
