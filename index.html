@@ -190,7 +190,7 @@
       method: 'DELETE',
       success: function(result) {
         toastr.success('Deleted');
-        get_internet_offers();
+        get_users();
       },
       error: function(){
         toastr.success('Not deleted');
@@ -236,7 +236,7 @@
       var html = '';
       for(var i = 0; i < data.length; i++) {
         html += '<tr><td>' + data[i].id + '</td>';
-        html += '<td>' + data[i].course_name + '</td>';
+        html += '<td>' + data[i].name + '</td>';
         html += '<td>' + data[i].professor_id + '</td>';
         html += '<td>' + data[i].assistant_id + '</td>';
         html += '<td><button type="button" class="btn btn-danger" onclick="delete_course('+data[i].id+');">Delete</button></td> </tr>';
@@ -251,7 +251,7 @@
       method: 'DELETE',
       success: function(result) {
         toastr.success('Deleted');
-        get_internet_offers();
+        get_courses();
       },
       error: function(){
         toastr.success('Not deleted');

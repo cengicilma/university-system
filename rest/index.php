@@ -43,8 +43,6 @@ Flight::route('DELETE /user/@id', function($id){
     $stmt->execute([":id" => $id]);
 });
 
-
-
 Flight::route('DELETE /course/@id', function($id){
     $delete = "DELETE FROM courses WHERE id = :id";
     $stmt= Flight::db()->prepare($delete);
