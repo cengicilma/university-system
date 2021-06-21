@@ -39,7 +39,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <table id="userstable" class="table">
+      <table class="table">
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -48,9 +48,10 @@
           <th scope="col">Email</th>
           <th scope="col">Phone Number</th>
           <th scope="col">Address</th>
+          <th scope="col">Delete</th>
         </tr>
         </thead>
-        <tbody id="userstable1">
+        <tbody id="userstable">
         </tbody>
       </table>
     </div>
@@ -119,6 +120,7 @@
           <th scope="col">Course Name</th>
           <th scope="col">Professor ID</th>
           <th scope="col">Assistant ID</th>
+          <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody id="coursestable">
@@ -175,9 +177,24 @@
         html += '<td>' + data[i].last_name + '</td>';
         html += '<td>' + data[i].email + '</td>';
         html += '<td>' + data[i].phone_number + '</td>';
-        html += '<td>' + data[i].address + '</td></tr>';
+        html += '<td>' + data[i].address + '</td>';
+        html += '<td><button type="button" class="btn btn-danger" onclick="delete_user('+data[i].id+');">Delete</button></td> </tr>';
       }
       $("#userstable").html(html);
+    });
+  }
+
+  function delete_user(id){
+    $.ajax({
+      url: 'rest/user/'+id,
+      method: 'DELETE',
+      success: function(result) {
+        toastr.success('Deleted');
+        get_internet_offers();
+      },
+      error: function(){
+        toastr.success('Not deleted');
+      }
     });
   }
 
@@ -222,8 +239,23 @@
         html += '<td>' + data[i].course_name + '</td>';
         html += '<td>' + data[i].professor_id + '</td>';
         html += '<td>' + data[i].assistant_id + '</td>';
+        html += '<td><button type="button" class="btn btn-danger" onclick="delete_course('+data[i].id+');">Delete</button></td> </tr>';
       }
       $("#coursestable").html(html);
+    });
+  }
+
+  function delete_course(id){
+    $.ajax({
+      url: 'rest/course/'+id,
+      method: 'DELETE',
+      success: function(result) {
+        toastr.success('Deleted');
+        get_internet_offers();
+      },
+      error: function(){
+        toastr.success('Not deleted');
+      }
     });
   }
 
