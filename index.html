@@ -179,11 +179,11 @@
     $.get("rest/users", function(data) {
       var html = '';
       for(var i = 0; i < data.length; i++) {
-        html += '<tr><td>' + data[i].id + '</td>';
+        html += '<tr><td>' + data[i].userid + '</td>';
         html += '<td>' + data[i].first_name + '</td>';
         html += '<td>' + data[i].last_name + '</td>';
         html += '<td>' + data[i].email + '</td>';
-        html += '<td>' + data[i].phone_number + '</td>';
+        html += '<td>' + data[i].phone + '</td>';
         html += '<td>' + data[i].address + '</td>';
         html += '<td><button type="button" class="btn btn-danger" onclick="delete_user('+data[i].id+');">Delete</button></td> </tr>';
       }
@@ -210,11 +210,11 @@
     $.get("rest/students", function(data) {
       var html = '';
       for(var i = 0; i < data.length; i++) {
-        html += '<tr><td>' + data[i].id + '</td>';
+        html += '<tr><td>' + data[i].studentid + '</td>';
         html += '<td>' + data[i].first_name + '</td>';
         html += '<td>' + data[i].last_name + '</td>';
         html += '<td>' + data[i].email + '</td>';
-        html += '<td>' + data[i].phone_number + '</td>';
+        html += '<td>' + data[i].phone + '</td>';
         html += '<td>' + data[i].address + '</td></tr>';
       }
       $("#studentstable").html(html);
@@ -226,11 +226,11 @@
     $.get("rest/professors", function(data) {
       var html = '';
       for(var i = 0; i < data.length; i++) {
-        html += '<tr><td>' + data[i].id + '</td>';
+        html += '<tr><td>' + data[i].professorid + '</td>';
         html += '<td>' + data[i].first_name + '</td>';
         html += '<td>' + data[i].last_name + '</td>';
         html += '<td>' + data[i].email + '</td>';
-        html += '<td>' + data[i].phone_number + '</td>';
+        html += '<td>' + data[i].phone + '</td>';
         html += '<td>' + data[i].address + '</td></tr>';
       }
       $("#profesorsstable").html(html);
@@ -242,7 +242,7 @@
     $.get("rest/courses", function(data) {
       var html = '';
       for(var i = 0; i < data.length; i++) {
-        html += '<tr><td>' + data[i].id + '</td>';
+        html += '<tr><td>' + data[i].courseid + '</td>';
         html += '<td>' + data[i].name + '</td>';
         html += '<td>' + data[i].professor_id + '</td>';
         html += '<td>' + data[i].assistant_id + '</td>';
