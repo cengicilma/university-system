@@ -5,28 +5,28 @@ require '../vendor/autoload.php';
 
 
 /**
- * Username: 9ZM2evdyuU
- * Database name: 9ZM2evdyuU
- * Password: kF23TDnhot
- * Server: remotemysql.com
- * Port: 3306
+Username: 4Z0PvflNWl
+Database name: 4Z0PvflNWl
+Password: wTq9yrRwVU
+Server: remotemysql.com
+Port: 3306
  */
 
 
-Flight::register('db', 'PDO', array('mysql:host=remotemysql.com;dbname=9ZM2evdyuU','9ZM2evdyuU','kF23TDnhot'));
+Flight::register('db', 'PDO', array('mysql:host=remotemysql.com;dbname=4Z0PvflNWl','4Z0PvflNWl','wTq9yrRwVU'));
 
 Flight::route('GET /users', function(){
-    $users = Flight::db()->query('SELECT * FROM users', PDO::FETCH_ASSOC)->fetchAll();
+    $users = Flight::db()->query('SELECT * FROM user', PDO::FETCH_ASSOC)->fetchAll();
     Flight::json($users);
 });
 
 Flight::route('GET /students', function(){
-    $students = Flight::db()->query('SELECT users.id, users.first_name, users.last_name, users.email, users.phone_number, users.address FROM users, students WHERE students.users_id = users.id', PDO::FETCH_ASSOC)->fetchAll();
+    $students = Flight::db()->query('SELECT user.userid, user.first_name, user.last_name, user.email, user.phone_number, user.address FROM user, student WHERE student.userid = user.userid', PDO::FETCH_ASSOC)->fetchAll();
     Flight::json($students);
 });
 
 Flight::route('GET /professors', function(){
-    $professors = Flight::db()->query('SELECT users.id, users.first_name, users.last_name, users.email, users.phone_number, users.address FROM users, professors WHERE professors.user_id = users.id', PDO::FETCH_ASSOC)->fetchAll();
+    $professors = Flight::db()->query('SELECT user.userid, user.first_name, user.last_name, user.email, user.phone_number, user.address FROM user, professor WHERE professor.userid = user.userid', PDO::FETCH_ASSOC)->fetchAll();
     Flight::json($professors);
 });
 
@@ -38,7 +38,7 @@ Flight::route('GET /courses', function(){
 
 
 Flight::route('DELETE /user/@id', function($id){
-    $delete = 'DELETE FROM users WHERE id = :id';
+    $delete = 'DELETE FROM user WHERE id = :id';
     $stmt= Flight::db()->prepare($delete);
     $stmt->execute([":id" => $id]);
 });
